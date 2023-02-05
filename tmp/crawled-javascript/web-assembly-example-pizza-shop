@@ -1,0 +1,784 @@
+<!doctype html><!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en" > <![endif]--><!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en" >        <![endif]--><!--[if IE 8]>    <html class="no-js lt-ie9" lang="en" >               <![endif]--><!--[if gt IE 8]><!--><html class="no-js" lang="en"><!--<![endif]--><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="author" content="The Qt Company">
+    <meta name="description" content="Web Assembly support in browsers is evolving rapidly. Check Web Assembly Example - QML Chart demo  running in your browser.">
+    <meta name="generator" content="HubSpot">
+    <title>Web Assembly Example - Pizza Shop | Qt</title>
+    <link rel="shortcut icon" href="https://www.qt.io/hubfs/2016_Qt_Logo/qt_logo_green_rgb_16x16.png">
+    
+
+    <script src="/hs/hsstatic/jquery-libs/static-1.1/jquery/jquery-1.7.1.js"></script>
+<script>hsjQuery = window['jQuery'];</script>
+    <meta property="og:description" content="Web Assembly support in browsers is evolving rapidly. Check Web Assembly Example - QML Chart demo  running in your browser.">
+    <meta property="og:title" content="Web Assembly Example - Pizza Shop | Qt">
+    <meta name="twitter:description" content="Web Assembly support in browsers is evolving rapidly. Check Web Assembly Example - QML Chart demo  running in your browser.">
+    <meta name="twitter:title" content="Web Assembly Example - Pizza Shop | Qt">
+
+    
+
+    
+    <style>
+a.cta_button{-moz-box-sizing:content-box !important;-webkit-box-sizing:content-box !important;box-sizing:content-box !important;vertical-align:middle}.hs-breadcrumb-menu{list-style-type:none;margin:0px 0px 0px 0px;padding:0px 0px 0px 0px}.hs-breadcrumb-menu-item{float:left;padding:10px 0px 10px 10px}.hs-breadcrumb-menu-divider:before{content:'›';padding-left:10px}.hs-featured-image-link{border:0}.hs-featured-image{float:right;margin:0 0 20px 20px;max-width:50%}@media (max-width: 568px){.hs-featured-image{float:none;margin:0;width:100%;max-width:100%}}.hs-screen-reader-text{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px}
+</style>
+
+<link rel="stylesheet" href="https://www.qt.io/hs-fs/hub/149513/hub_generated/template_assets/85031126345/1670913155585/qtv3/partials/header/header.min.css">
+<link rel="stylesheet" href="https://www.qt.io/hs-fs/hub/149513/hub_generated/template_assets/86192723069/1671571986300/qtv3/partials/footer/footer.min.css">
+    
+
+    
+    <link rel="canonical" href="https://www.qt.io/web-assembly-example-pizza-shop">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="google-site-verification" content="91RJ0AVTozuP5one5itC5zhjLe3Vsk289Yqx7rGOq6w">
+<meta name="google-site-verification" content="smOLflz9TwJAqAUKON9vV0COQVqEey7ZMEou6lmIldw">
+<meta name="google-site-verification" content="bIhnm2Ko3OmLAEP0Dqp0_aJNyJz9zj6KyJKAb1Lo-es">
+
+<!-- Start Visual Website Optimizer Asynchronous Code -->
+<script type="text/javascript">
+var _vwo_clicks = 15; //this will track first 15 clicks
+var _vwo_code=(function(){
+var account_id=275789,
+settings_tolerance=2000,
+library_tolerance=2500,
+use_existing_jquery=false,
+f=false,d=document;return{use_existing_jquery:function(){return use_existing_jquery;},library_tolerance:function(){return library_tolerance;},finish:function(){if(!f){f=true;var a=d.getElementById('_vis_opt_path_hides');if(a)a.parentNode.removeChild(a);}},finished:function(){return f;},load:function(a){var b=d.createElement('script');b.src=a;b.type='text/javascript';b.innerText;b.onerror=function(){_vwo_code.finish();};d.getElementsByTagName('head')[0].appendChild(b);},init:function(){settings_timer=setTimeout('_vwo_code.finish()',settings_tolerance);this.load('//dev.visualwebsiteoptimizer.com/j.php?a='+account_id+'&u='+encodeURIComponent(d.URL)+'&r='+Math.random());var a=d.createElement('style'),b='body{opacity:0 !important;filter:alpha(opacity=0) !important;background:none !important;}',h=d.getElementsByTagName('head')[0];a.setAttribute('id','_vis_opt_path_hides');a.setAttribute('type','text/css');if(a.styleSheet)a.styleSheet.cssText=b;else a.appendChild(d.createTextNode(b));h.appendChild(a);return settings_timer;}};}());_vwo_settings_timer=_vwo_code.init();
+</script>
+<!-- End Visual Website Optimizer Asynchronous Code -->
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-T2GWQM');</script>
+<!-- End Google Tag Manager -->
+
+<link href="https://fonts.googleapis.com/css?family=Titillium+Web:400,400i,600" rel="stylesheet">
+
+<!-- Social Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Qt Company",
+  "url": "https://www.qt.io",
+  "sameAs": [
+    "https://www.facebook.com/qt/",
+    "https://www.instagram.com/theqtcompany/",
+    "https://www.linkedin.com/company/theqtcompany/",
+    "https://twitter.com/qtproject"
+  ]
+}
+</script>
+<!-- End Social Schema -->
+
+<style type="text/css">
+  /* Hide the form in maintenance notification */
+  #hsPopUpForm-ce3e3eba-d446-4bb7-926e-6f85e1acc813 { display: none; }
+</style>
+
+<meta property="og:url" content="https://www.qt.io/web-assembly-example-pizza-shop">
+<meta name="twitter:card" content="summary">
+<meta http-equiv="content-language" content="en">
+<link rel="stylesheet" href="//cdn2.hubspot.net/hub/7052064/hub_generated/template_assets/1675434974648/hubspot/hubspot_default/shared/responsive/layout.min.css">
+
+
+<link rel="stylesheet" href="https://www.qt.io/hs-fs/hub/149513/hub_generated/template_assets/36303892857/1670246060914/qtv2/assets/css/qt-main.min.css">
+<link rel="stylesheet" href="https://www.qt.io/hs-fs/hub/149513/hub_generated/template_assets/7586932102/1578904689211/Coded_files/Custom/page/Qt2017/fontawesome_minified.min.css">
+
+
+    <!--<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">-->
+<!--<link href="//cdn2.hubspot.net/hub/149513/hub_generated/template_assets/7586932102/1578904689211/Coded_files/Custom/page/Qt2017/fontawesome_minified.min.css" rel="stylesheet">-->
+    
+
+</head>
+<body class="   hs-content-id-12047561822 hs-landing-page hs-page hs-content-path-web-assembly-example-pizza-shop hs-content-name-web-assembly-example-pizza-shop  " style="">
+    <div class="header-container-wrapper">
+    <div class="header-container container-fluid">
+
+<div class="row-fluid-wrapper row-depth-1 row-number-1 ">
+<div class="row-fluid ">
+<div class="span12 widget-span widget-type-custom_widget " style="" data-widget-type="custom_widget" data-x="0" data-w="12">
+<div id="hs_cos_wrapper_module_1502712458971131" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module"><div class="l-header--green">
+<div data-global-resource-path="qtv3/partials/header/header.html">
+
+<div class="l-header__gap-creator"></div>
+<div class="l-header h-scheme-1">
+    <div class="l-header__container">
+        <div class="l-header__wrapper" data-scheme-target>
+            <div class="l-header__primary">
+                <div class="l-header__logo">
+                    <a href="/?hsLang=en" class="c-logo-header"><svg width="122" viewbox="0 0 633 160" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M85.0242 38.5439C76.0002 38.5439 69.8082 41.5199 66.4482 47.4719C63.0882 53.4239 61.4082 62.9279 61.4082 75.9839C61.4082 89.0399 63.0402 98.3679 66.3042 103.984C69.5682 109.6 75.8082 112.4 85.0242 112.4C94.2402 112.4 100.448 109.648 103.68 104.128C106.896 98.6079 108.496 89.2799 108.496 76.1279C108.496 62.9759 106.832 53.4239 103.536 47.4719C100.224 41.5199 94.0482 38.5439 85.0242 38.5439V38.5439Z" fill="black" /><path d="M25.6 0L0 25.6V160H198.4L224 134.4V0H25.6ZM121.456 139.632L106.624 146.544L93.808 125.52C91.984 126.096 89.056 126.384 85.024 126.384C70.048 126.384 59.616 122.352 53.696 114.288C47.792 106.224 44.848 93.472 44.848 76.048C44.848 58.624 47.84 45.696 53.84 37.232C59.84 28.784 70.224 24.56 85.008 24.56C99.792 24.56 110.16 28.768 116.112 37.168C122.064 45.568 125.04 58.512 125.04 75.984C125.04 87.504 123.808 96.816 121.376 103.92C118.928 111.024 114.912 116.448 109.344 120.192L121.44 139.632H121.456ZM163.424 126.384C155.264 126.384 149.664 124.512 146.64 120.768C143.616 117.024 142.112 109.968 142.112 99.6V66.192H132.896V52.8H142.112V31.92H157.664V52.8H177.536V66.192H157.664V97.872C157.664 103.728 158.096 107.616 158.96 109.536C159.824 111.456 162.032 112.416 165.584 112.416L177.392 111.984L178.112 124.512C171.68 125.76 166.784 126.384 163.424 126.384V126.384Z" fill="black" /><path d="M318.552 87.272V73.16H346.632V123.272C344.04 123.944 338.76 124.664 330.792 125.432C322.92 126.2 317.208 126.584 313.656 126.584C298.68 126.584 288.36 122.456 282.696 114.2C277.032 105.944 274.2 93.032 274.2 75.464C274.2 57.8 277.08 44.936 282.84 36.872C288.696 28.808 298.776 24.776 313.08 24.776C321.528 24.776 331.032 25.736 341.592 27.656L346.632 28.664L346.056 41.336C334.44 39.8 324.024 39.032 314.808 39.032C305.592 39.032 299.256 41.624 295.8 46.808C292.44 51.992 290.76 61.592 290.76 75.608C290.76 89.624 292.344 99.32 295.512 104.696C298.776 109.976 305.304 112.616 315.096 112.616C322.104 112.616 327.336 112.184 330.792 111.32V87.272H318.552Z" fill="black" /><path d="M364.816 125V53H380.368V61.64C388.528 56.36 396.688 52.952 404.848 51.416V67.112C396.592 68.744 389.536 70.856 383.68 73.448L380.512 74.744V125H364.816Z" fill="black" /><path d="M420.173 60.776C425.165 54.536 433.421 51.416 444.941 51.416C456.461 51.416 464.669 54.536 469.565 60.776C474.557 67.016 477.053 76.376 477.053 88.856C477.053 101.336 474.653 110.744 469.853 117.08C465.053 123.416 456.749 126.584 444.941 126.584C433.133 126.584 424.829 123.416 420.029 117.08C415.229 110.744 412.829 101.336 412.829 88.856C412.829 76.376 415.277 67.016 420.173 60.776ZM431.981 107.576C434.189 111.416 438.509 113.336 444.941 113.336C451.373 113.336 455.693 111.416 457.901 107.576C460.109 103.736 461.213 97.448 461.213 88.712C461.213 79.976 460.013 73.784 457.613 70.136C455.309 66.488 451.085 64.664 444.941 64.664C438.797 64.664 434.525 66.488 432.125 70.136C429.821 73.784 428.669 79.976 428.669 88.712C428.669 97.448 429.773 103.736 431.981 107.576Z" fill="black" /><path d="M536.277 53H551.829V125H536.277V120.536C529.269 124.568 522.789 126.584 516.837 126.584C506.949 126.584 500.325 123.944 496.965 118.664C493.605 113.288 491.925 103.928 491.925 90.584V53H507.621V90.728C507.621 99.368 508.341 105.176 509.781 108.152C511.221 111.128 514.581 112.616 519.861 112.616C525.045 112.616 529.797 111.656 534.117 109.736L536.277 108.872V53Z" fill="black" /><path d="M570.832 155.96V53H586.384V57.464C593.008 53.432 599.2 51.416 604.96 51.416C614.464 51.416 621.424 54.344 625.84 60.2C630.256 65.96 632.464 75.704 632.464 89.432C632.464 103.064 629.92 112.664 624.832 118.232C619.84 123.8 611.632 126.584 600.208 126.584C596.272 126.584 591.712 126.152 586.528 125.288V155.96H570.832ZM602.224 65.384C597.712 65.384 593.2 66.392 588.688 68.408L586.528 69.416V111.896C590.368 112.664 594.592 113.048 599.2 113.048C605.728 113.048 610.24 111.176 612.736 107.432C615.232 103.688 616.48 97.304 616.48 88.28C616.48 73.016 611.728 65.384 602.224 65.384Z" fill="black" /></svg></a>
+                </div>
+                <div class="l-header__navigation">
+                    <div class="c-header-navigation">
+
+                        
+                            <span id="hs_cos_wrapper_module_1502712458971131_header_menu" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_menu" style="" data-hs-cos-general-type="widget" data-hs-cos-type="menu"><div id="hs_menu_wrapper_module_1502712458971131_header_menu" class="hs-menu-wrapper active-branch flyouts hs-menu-flow-horizontal" role="navigation" data-sitemap-name="QtV3 Header" data-menu-id="83673483139" aria-label="Navigation Menu">
+ <ul role="menu">
+  <li class="hs-menu-item hs-menu-depth-1 hs-item-has-children" role="none"><a href="https://www.qt.io/product" aria-haspopup="true" aria-expanded="false" role="menuitem">Products</a>
+   <ul role="menu" class="hs-menu-children-wrapper">
+    <li class="hs-menu-item hs-menu-depth-2 hs-item-has-children" role="none"><a href="https://www.qt.io/product" role="menuitem"><h6 style="border-color:#41cd52;">Development Framework &amp; Tools</h6></a>
+     <ul role="menu" class="hs-menu-children-wrapper">
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="javascript:;" role="menuitem"></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://www.qt.io/product/framework" role="menuitem">
+        <div class="c-nav-badge c-nav-badge--arrow">
+         <em>Qt Framework</em>
+         <span>Cross-platform software libraries and APIs</span>
+        </div></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://www.qt.io/product/development-tools" role="menuitem">
+        <div class="c-nav-badge c-nav-badge--arrow">
+         <em>Qt Development tools</em>
+         <span>Qt Creator IDE and productivity tools</span>
+        </div></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://www.qt.io/product/ui-design-tools" role="menuitem">
+        <div class="c-nav-badge c-nav-badge--arrow">
+         <em>Qt Design Studio</em>
+         <span>UI Design tool for UI composition</span>
+        </div></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://www.qt.io/product/testing-tools" role="menuitem">
+        <div class="c-nav-badge c-nav-badge--arrow">
+         <em>Qt Quality Assurance</em>
+         <span>for Qt projects</span>
+        </div></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://www.qt.io/product/digital-advertising" role="menuitem">
+        <div class="c-nav-badge c-nav-badge--arrow">
+         <em>Qt Digital Ads</em>
+         <span>Digital advertising for UI apps</span>
+        </div></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="javascript:;" role="menuitem"><strong>Beta <span style="text-transform:none;">Qt</span> products &amp; Updates</strong></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://www.qt.io/product/insight" role="menuitem">
+        <div style="margin-top: 10px" class="c-nav-badge c-nav-badge--arrow">
+         <em>Qt Insight</em>
+         <span>Usage intelligence for embedded devices</span>
+        </div></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://www.qt.io/product/qt6" role="menuitem">
+        <div style="margin-top: 10px" class="c-nav-badge c-nav-badge--arrow">
+         <em>Qt 6</em>
+         <span>The latest version of Qt</span>
+        </div></a></li>
+     </ul></li>
+    <li class="hs-menu-item hs-menu-depth-2 hs-item-has-children" role="none"><a href="https://www.qt.io/product/quality-assurance" role="menuitem"><h6 style="border-color:#27138B;">Quality Assurance Tools</h6></a>
+     <ul role="menu" class="hs-menu-children-wrapper">
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="javascript:;" role="menuitem"></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://www.qt.io/product/quality-assurance/squish" role="menuitem">
+        <div class="c-nav-badge squish-icon">
+         <em>Squish</em>
+         <span>GUI test automation</span>
+        </div></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://www.qt.io/product/quality-assurance/coco" role="menuitem">
+        <div class="c-nav-badge coco-icon">
+         <em>Coco</em>
+         <span>Code coverage analysis</span>
+        </div></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://www.qt.io/product/quality-assurance/test-center" role="menuitem">
+        <div class="c-nav-badge test-center-icon">
+         <em>Test Center</em>
+         <span>Test results management and analysis</span>
+        </div></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://www.axivion.com/en/products/axivion-suite/" role="menuitem" target="_blank" rel="noopener">
+        <div class="c-nav-badge axivion-arch-icon">
+         <em class="c-link-external">Axivion Architecture Analysis</em>
+         <span>Software architecture analysis</span>
+        </div></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://www.axivion.com/en/products/static-code-analysis/" role="menuitem" target="_blank" rel="noopener">
+        <div class="c-nav-badge axivion-static-icon">
+         <em class="c-link-external">Axivion Static Code Analysis</em>
+         <span>Software static code analysis</span>
+        </div></a></li>
+     </ul></li>
+   </ul></li>
+  <li class="hs-menu-item hs-menu-depth-1 hs-item-has-children" role="none"><a href="javascript:;" aria-haspopup="true" aria-expanded="false" role="menuitem">Solutions</a>
+   <ul role="menu" class="hs-menu-children-wrapper">
+    <li class="hs-menu-item hs-menu-depth-2 hs-item-has-children" role="none"><a href="javascript:;" role="menuitem"><h6>We have solutions for your entire cross-platform software development lifecycle.</h6></a>
+     <ul role="menu" class="hs-menu-children-wrapper">
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="javascript:;" role="menuitem"><strong>Which platform are you targeting?</strong></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://www.qt.io/product/qt-for-application-development" role="menuitem">
+        <div class="c-chevron">
+         Desktop and Mobile Applications
+        </div></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://www.qt.io/product/develop-embedded-devices" role="menuitem">
+        <div class="c-chevron">
+         Embedded devices
+        </div></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://www.qt.io/product/develop-software-microcontrollers-mcu" role="menuitem">
+        <div class="c-chevron">
+         Microcontrollers (MCUs)
+        </div></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="javascript:;" role="menuitem"><strong>At what stage is your project?</strong></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://www.qt.io/qt-professional-services" role="menuitem">
+        <div class="c-chevron">
+         Planning and resourcing
+        </div></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://www.qt.io/design" role="menuitem">
+        <div class="c-chevron">
+         Designing UI and prototyping
+        </div></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://www.qt.io/develop" role="menuitem">
+        <div class="c-chevron">
+         Developing, compiling and coding
+        </div></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://www.qt.io/product/quality-assurance" role="menuitem">
+        <div class="c-chevron">
+         Testing and debugging
+        </div></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://www.qt.io/deploy" role="menuitem">
+        <div class="c-chevron">
+         Deploying and maintaining
+        </div></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="javascript:;" role="menuitem"><strong>What do you want to improve?</strong></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://www.qt.io/resources/scalability" role="menuitem">
+        <div class="c-chevron">
+         Scalable software and UI development
+        </div></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://www.qt.io/qt-world" role="menuitem">
+        <div class="c-navigation-badge" style="margin-top:20px;background-image:url('https://www.qt.io/hubfs/Qt_World_Nav2.jpg');"> 
+         <span>Virtual Qt World</span> 
+        </div></a></li>
+     </ul></li>
+    <li class="hs-menu-item hs-menu-depth-2 hs-item-has-children" role="none"><a href="javascript:;" role="menuitem"></a>
+     <ul role="menu" class="hs-menu-children-wrapper">
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="javascript:;" role="menuitem"><strong>For which industry is your product?</strong></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://www.qt.io/industry/qt-in-automotive" role="menuitem">
+        <div class="c-chevron">
+         Automotive design
+        </div></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://www.qt.io/industry/qt-in-automation/" role="menuitem">
+        <div class="c-chevron">
+         Industrial automation
+        </div></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://www.qt.io/industry/qt-in-consumer-electronics" role="menuitem">
+        <div class="c-chevron">
+         Consumer electronic creation
+        </div></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://www.qt.io/industry/qt-in-medical/" role="menuitem">
+        <div class="c-chevron">
+         Medical device development
+        </div></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="javascript:;" role="menuitem"><strong>What is your main responsibility in your current role?</strong></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://www.qt.io/why-qt" role="menuitem">
+        <div class="c-chevron">
+         Managing a team
+        </div></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://www.qt.io/develop" role="menuitem">
+        <div class="c-chevron">
+         Developing apps or embedded solutions
+        </div></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://www.qt.io/design" role="menuitem">
+        <div class="c-chevron">
+         UI design and prototyping
+        </div></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://www.qt.io/product/quality-assurance" role="menuitem">
+        <div class="c-chevron">
+         Quality assurance and testing
+        </div></a></li>
+     </ul></li>
+   </ul></li>
+  <li class="hs-menu-item hs-menu-depth-1 hs-item-has-children" role="none"><a href="https://resources.qt.io/" aria-haspopup="true" aria-expanded="false" role="menuitem">Resources</a>
+   <ul role="menu" class="hs-menu-children-wrapper">
+    <li class="hs-menu-item hs-menu-depth-2 hs-item-has-children" role="none"><a href="javascript:;" role="menuitem"><h6 style="border-color:#41cd52;">Development Framework and Tools</h6></a>
+     <ul role="menu" class="hs-menu-children-wrapper">
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="javascript:;" role="menuitem"><strong>The latest <span style="text-transform:none;">Qt</span> resources</strong></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://www.qt.io/blog" role="menuitem">
+        <div class="c-chevron c-chevron--green">
+         Qt Blog
+        </div></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://www.qt.io/live-webinars-and-events" role="menuitem">
+        <div class="c-chevron c-chevron--green">
+         Live Webinars and Events
+        </div></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://www.qt.io/resources/qt?content-type=Customer+Case" role="menuitem">
+        <div class="c-chevron c-chevron--green">
+         Qt Customer cases
+        </div></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://www.qt.io/resources/qt?content-type=Demo" role="menuitem">
+        <div class="c-chevron c-chevron--green">
+         Qt Demos
+        </div></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://www.qt.io/resources/qt" role="menuitem">
+        <div class="c-chevron c-chevron--green">
+         All Qt resources
+        </div></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="javascript:;" role="menuitem"><strong>Learn <span style="text-transform:none;">Qt</span> tools</strong></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://www.qt.io/learn#starthere" role="menuitem">
+        <div class="c-chevron c-chevron--green">
+         Get started with Qt
+        </div></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://www.qt.io/courses" role="menuitem">
+        <div class="c-chevron c-chevron--green">
+         Browse courses and tutorials
+        </div></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://www.qt.io/qt-educational-license" role="menuitem">
+        <div class="c-chevron c-chevron--green">
+         Get Qt Educational license
+        </div></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="javascript:;" role="menuitem"><strong>Connect with <span style="text-transform:none;">Qt</span> community</strong></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://doc.qt.io/" role="menuitem" target="_blank" rel="noopener">
+        <div class="c-chevron c-chevron--green">
+         Qt Documentation
+        </div></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://forum.qt.io/" role="menuitem" target="_blank" rel="noopener">
+        <div class="c-chevron c-chevron--green">
+         Qt Forum
+        </div></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://wiki.qt.io/Main" role="menuitem" target="_blank" rel="noopener">
+        <div class="c-chevron c-chevron--green">
+         Qt Wiki
+        </div></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://www.qt.io/community/contribute-to-qt" role="menuitem" target="_blank" rel="noopener">
+        <div class="c-chevron c-chevron--green">
+         Contribute to Qt
+        </div></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://www.qt.io/contact-us/partners" role="menuitem">
+        <div class="c-chevron c-chevron--green">
+         Qt Partners
+        </div></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://account.qt.io" role="menuitem" target="_blank" rel="noopener">
+        <div class="c-nav-badge c-nav-badge--grey" style="margin-top:20px;">
+         <img src="https://www.qt.io/hubfs/qt_account_icon.png">
+         <em>Login to your Qt account</em>
+         <span>Design Studio, Qt Creator etc.</span>
+        </div></a></li>
+     </ul></li>
+    <li class="hs-menu-item hs-menu-depth-2 hs-item-has-children" role="none"><a href="javascript:;" role="menuitem"><h6 style="border-color:#27138B;">Quality Assurance Tools</h6></a>
+     <ul role="menu" class="hs-menu-children-wrapper">
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="javascript:;" role="menuitem"><strong>The latest QA resources</strong></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://www.qt.io/blog/quality-assurance" role="menuitem">
+        <div class="c-chevron c-chevron--purple">
+         QA Blog
+        </div></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://www.qt.io/live-webinars-and-events" role="menuitem">
+        <div class="c-chevron c-chevron--purple">
+         Live Webinars and Events
+        </div></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://www.qt.io/product/quality-assurance/success-stories" role="menuitem">
+        <div class="c-chevron c-chevron--purple">
+         QA Success Stories
+        </div></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://www.qt.io/resources/quality-assurance" role="menuitem">
+        <div class="c-chevron c-chevron--purple">
+         QA Resources
+        </div></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="javascript:;" role="menuitem"><strong>Our QA support for you</strong></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://doc.qt.io/tools.html#qa" role="menuitem" target="_blank" rel="noopener">
+        <div class="c-chevron c-chevron--purple">
+         QA Documentation
+        </div></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://kb.froglogic.com/" role="menuitem" target="_blank" rel="noopener">
+        <div class="c-chevron c-chevron--purple">
+         Knowledge Base
+        </div></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://www.qt.io/contact-us/partners" role="menuitem">
+        <div class="c-chevron c-chevron--purple">
+         QA Partners and resellers
+        </div></a></li>
+      <li class="hs-menu-item hs-menu-depth-3" role="none"><a href="https://www.froglogic.com/customerarea" role="menuitem" target="_blank" rel="noopener">
+        <div class="c-nav-badge c-nav-badge--grey" style="margin-top:20px;">
+         <img src="https://www.qt.io/hubfs/qa_account_icon.png" alt="QA account icon">
+         <em>Login to your QA account</em>
+         <span>Squish, Coco, Test Center</span>
+        </div></a></li>
+     </ul></li>
+   </ul></li>
+ </ul>
+</div></span>
+                        
+
+                    </div>
+                </div>
+            </div>
+            <div class="l-header__secondary">
+
+                <div class="c-search-btn">
+                    <svg width="20" height="20" viewbox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16.5 13.9C15.7 13.1 14.8 12.5 13.9 11.9C13.8 11.8 12.8 10.8 12.4 10.5C14.8 6.5 11.3 1.3 6.69998 2C2.29998 2.7 0.399976 8.2 3.49998 11.4C5.19998 13.3 8.09998 13.7 10.4 12.5C11 13.1 11.5 13.6 12 14.2C12.7 15.1 13.2 16 14.1 16.7C14.7 17.2 15.5 17.9 16.4 18C17.5 18.1 18.1 17.4 18.1 16.4C18 15.5 17.1 14.5 16.5 13.9ZM7.59998 11.6C5.39998 11.6 3.59998 9.8 3.59998 7.6C3.59998 5.4 5.39998 3.6 7.59998 3.6C9.79998 3.6 11.6 5.4 11.6 7.6C11.6 9.8 9.79998 11.6 7.59998 11.6Z" fill="black" /></svg>
+                    <form id="site-search" role="search" autocomplete="off"> 
+                        <input class="qt-search-component" placeholder="Search" id="search" name="search" onclick="(function(w,d,i){i.removeAttribute('on'+w.event.type);var j=d.createElement('script'),c=d.createElement('link');j.async=true;j.onload=function(){qtSearchInit(i,w.qtSearchNavigation)};j.src='https://www.qt.io/hubfs/qt-design-system/qt-search-component/qt-search-component.js?ts=3124';c.rel='stylesheet';c.onload=function(){try{w.qtscs=1;qtSearchStyle(i)}catch(e){}};c.href='https://www.qt.io/hubfs/qt-design-system/qt-search-component/qt-search-component.css?ts=3124';d.head.appendChild(c);d.head.appendChild(j)})(window,document,this)" required type="text"> 
+                    </form>
+                </div>
+
+                <a class="c-account-btn" href="https://account.qt.io/">
+                    <svg width="20" height="20" viewbox="0 0 20 20" fill="#000000" xmlns="http://www.w3.org/2000/svg"><path d="M10 9.25C7.73001 9.25 7.27001 5.81 7.27001 5.81C7.00001 4.02 7.82001 2 9.97001 2C12.13 2 12.95 4.02 12.68 5.81C12.68 5.81 12.27 9.25 10 9.25ZM10 11.82L12.72 10C15.11 10 17.24 12.33 17.24 14.53V17.02C17.24 17.02 13.59 18.15 10 18.15C6.35001 18.15 2.76001 17.02 2.76001 17.02V14.53C2.76001 12.28 4.70001 10.05 7.23001 10.05L10 11.82Z" fill="black" /></svg>
+                </a>
+
+                <ul class="c-langswitch">
+                    <svg width="25" height="25" viewbox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_3_1872)">
+                    <path d="M11.4137 0.615341C8.5344 0.615341 5.773 1.75915 3.737 3.79515C1.701 5.83115 0.55719 8.59256 0.55719 11.4719C0.55719 14.3512 1.701 17.1126 3.737 19.1486C5.773 21.1846 8.5344 22.3284 11.4137 22.3284C14.2931 22.3284 17.0545 21.1846 19.0905 19.1486C21.1265 17.1126 22.2703 14.3512 22.2703 11.4719C22.2703 8.59256 21.1265 5.83115 19.0905 3.79515C17.0545 1.75915 14.2931 0.615341 11.4137 0.615341V0.615341ZM1.89616 12.2922H4.92394C4.97219 13.3899 5.12538 14.4804 5.38232 15.5491H2.77675C2.29087 14.5248 1.99262 13.4217 1.89616 12.2922ZM12.234 5.77823V2.05082C13.3965 2.49259 14.3517 3.35315 14.912 4.46339C15.1592 4.88197 15.3776 5.31743 15.5634 5.76617L12.234 5.77823ZM16.1182 7.40672C16.3981 8.47186 16.5646 9.56355 16.6128 10.6637H12.234V7.40672H16.1182ZM10.5935 2.05082V5.77823H7.26413C7.45021 5.32913 7.66788 4.89378 7.91552 4.47545C8.47339 3.36066 9.42891 2.49553 10.5935 2.05082ZM10.5935 7.40672V10.6637H6.22672C6.27497 9.56355 6.44144 8.47186 6.7213 7.40672H10.5935ZM4.92394 10.6516H1.89616C1.99262 9.52205 2.29087 8.41893 2.77675 7.39465H5.38232C5.12489 8.46299 4.97138 9.55373 4.92394 10.6516ZM6.22672 12.2922H10.5935V15.5491H6.7213C6.44148 14.4841 6.27569 13.3923 6.22672 12.2922ZM10.6055 17.1173V20.8447C9.44306 20.4029 8.48783 19.5424 7.92758 18.4321C7.67995 18.0138 7.46227 17.5785 7.27619 17.1294L10.6055 17.1173ZM12.234 20.8447V17.1776H15.5634C15.3773 17.6267 15.1596 18.0621 14.912 18.4804C14.3517 19.5906 13.3965 20.4512 12.234 20.893V20.8447ZM12.234 15.4888V12.2318H16.6008C16.5518 13.332 16.386 14.4238 16.1062 15.4888H12.234ZM17.9156 12.2318H20.9434C20.8469 13.3614 20.5487 14.4645 20.0628 15.4888H17.4452C17.6985 14.4393 17.8517 13.3694 17.9035 12.2922L17.9156 12.2318ZM17.9156 10.6034C17.8604 9.52532 17.7028 8.45497 17.4452 7.40672H20.0507C20.5369 8.43206 20.8348 9.5346 20.9313 10.6637L17.9156 10.6034ZM19.1219 5.77823H16.9626C16.572 4.68088 16.0057 3.65424 15.2859 2.7384C16.787 3.4122 18.0909 4.45862 19.0736 5.77823H19.1219ZM7.54157 2.7384C6.82181 3.65424 6.25553 4.68088 5.86484 5.77823H3.75384C4.73663 4.45862 6.04049 3.4122 7.54157 2.7384ZM3.74178 17.2138H5.86484C6.25553 18.3112 6.82181 19.3378 7.54157 20.2536C6.03634 19.5697 4.73207 18.5105 3.75384 17.1776L3.74178 17.2138ZM15.2738 20.2536C15.9936 19.3378 16.5599 18.3112 16.9506 17.2138H19.0736C18.0848 18.5157 16.7815 19.5451 15.2859 20.2054L15.2738 20.2536Z" fill="#000000" />
+                    </g>
+                    <defs>
+                    <clippath id="clip0_3_1872">
+                    <rect width="24.1257" height="24.1257" transform="translate(0.55719 0.615341)" />
+                    </clippath>
+                    </defs>
+                    </svg>
+
+                    <li><a class="hs-skip-lang-url-rewrite" href="/" data-lang-id=""><span class="c-langswitch__slug">EN</span><span class="c-langswitch__name">English</span></a></li>
+                    <li><a class="hs-skip-lang-url-rewrite" href="/zh-cn/" data-lang-id="zh-cn"><span class="c-langswitch__slug">CN</span><span class="c-langswitch__name">中文</span></a></li>
+                    <li><a class="hs-skip-lang-url-rewrite" href="/ja-jp/" data-lang-id="ja-jp"><span class="c-langswitch__slug">JP</span><span class="c-langswitch__name">日本語</span></a></li> 
+                    <li><a class="hs-skip-lang-url-rewrite" href="/ko-kr/" data-lang-id="ko-kr"><span class="c-langswitch__slug">KR</span><span class="c-langswitch__name">한국어</span></a></li>
+                </ul>
+                
+                <a href="https://www.qt.io/pricing/?hsLang=en" class="c-header-btn--outline">Price. Buy.</a>
+                <a href="https://www.qt.io/download/?hsLang=en" class="c-header-btn">Download. Try.</a>
+
+            </div>
+            <div class="l-header__mobile-toggle">
+                <div class="c-hamburger js-l-header__mobile-toggle"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="c-contact-wrapper">
+    <a href="https://www.qt.io/contact-us/?hsLang=en" class="c-contact-float">Contact Us</a>
+</div></div>
+</div></div>
+
+</div><!--end widget-span -->
+</div><!--end row-->
+</div><!--end row-wrapper -->
+
+    </div><!--end header -->
+</div><!--end header wrapper -->
+
+<div class="body-container-wrapper">
+    <div class="body-container container-fluid">
+
+<div class="row-fluid-wrapper row-depth-1 row-number-1 ">
+<div class="row-fluid ">
+<div class="span12 widget-span widget-type-widget_container " style="" data-widget-type="widget_container" data-x="0" data-w="12">
+<span id="hs_cos_wrapper_module_1502712469324135" class="hs_cos_wrapper hs_cos_wrapper_widget_container hs_cos_wrapper_type_widget_container" style="" data-hs-cos-general-type="widget_container" data-hs-cos-type="widget_container"><div id="hs_cos_wrapper_widget_1558076382765" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_custom_widget" style="" data-hs-cos-general-type="widget" data-hs-cos-type="custom_widget">
+<section class="b-section-header b-section-header--center">
+    <div class="b-section-header__container">
+        <div class="b-section-header__wrapper">
+            <div class="h-wysiwyg-html">
+                <span id="hs_cos_wrapper_widget_1558076382765_b-section-header-richtext" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text" style="" data-hs-cos-general-type="widget" data-hs-cos-type="rich_text"><h2>Web Assembly Example - Pizza Shop</h2></span>
+            </div>
+        </div>
+    </div>
+</section>
+</div>
+<div id="hs_cos_wrapper_widget_1558076337511" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module"><span id="hs_cos_wrapper_widget_1558076337511_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text" style="" data-hs-cos-general-type="widget" data-hs-cos-type="rich_text"><figure id="spinner" style="overflow: visible;"><center style="margin-top: 1.5em; line-height: 150%;"><img src="https://www.qt.io/hubfs/_website/qt-webassembly/qtlogo.svg" style="display: block;"> <strong>Qt for WebAssembly: Pizza Shop</strong>
+<div id="status">&nbsp;</div>
+<noscript>JavaScript is disabled. Please enable JavaScript to use this application.</noscript></center></figure>
+<canvas id="canvas" style="margin: 0 auto; width: 80%; margin-bottom: 10rem; box-shadow: 0 0 20px #999;" width="1432" height="716"></canvas>
+<script type="text/javascript">// <![CDATA[
+function init_wasm() {
+          var spinner = document.getElementById('spinner');
+          var canvas = document.getElementById('canvas');
+          var status = document.getElementById('status')
+
+          var qtLoader = _QtLoader({
+              path: 'https://cdn2.hubspot.net/hubfs/149513/_website/qt-webassembly/ordering-system/',
+              showLoader: function(loaderStatus) {
+                  spinner.style.display = 'block';
+                  canvas.style.display = 'none';
+                  status.innerHTML = loaderStatus + "...";
+              },
+              showError: function(errorText) {
+                  status.innerHTML = errorText;
+                  spinner.style.display = 'block';
+                  canvas.style.display = 'none';
+              },
+              showExit: function() {
+                  status.innerHTML = "Application exit";
+                  if (qtLoader.exitCode !== undefined)
+                      status.innerHTML += " with code " + qtLoader.exitCode;
+                  if (qtLoader.exitText !== undefined)
+                      status.innerHTML += " (" + qtLoader.exitText + ")";
+                  spinner.style.display = 'block';
+                  canvas.style.display = 'none';
+              },
+              showCanvas: function() {
+                  spinner.style.display = 'none';
+                  canvas.style.display = 'block';
+                  return canvas;
+              },
+          });
+          qtLoader.loadEmscriptenModule("ordering-system");
+      }
+// ]]></script>
+<script type="text/javascript" src="https://www.qt.io/hubfs/_website/qt-webassembly/qtloader.js"></script></span></div>
+<div id="hs_cos_wrapper_widget_1558078750549" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_custom_widget" style="" data-hs-cos-general-type="widget" data-hs-cos-type="custom_widget"><section class="b-cta-big">
+    <div class="c-corners c-corners--no-top"></div>
+    <div class="b-cta-big__container">
+        <div class="l-cta">
+            <div class="l-cta__text">
+                <div class="h-wysiwyg-html">
+                    <span id="hs_cos_wrapper_widget_1558078750549_b-cta-richtext" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_rich_text" style="" data-hs-cos-general-type="widget" data-hs-cos-type="rich_text"><h1>Contact Us</h1>
+<p>Get in touch today and get started with Qt!</p></span>
+                </div>
+            </div>
+            <div class="l-cta__call-to-action">
+                <span id="hs_cos_wrapper_widget_1558078750549_b-cta-cta" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_cta" style="" data-hs-cos-general-type="widget" data-hs-cos-type="cta"><!--HubSpot Call-to-Action Code --><span class="hs-cta-wrapper" id="hs-cta-wrapper-1ebfd08d-701c-4ed4-a806-6c472ad9e226"><span class="hs-cta-node hs-cta-1ebfd08d-701c-4ed4-a806-6c472ad9e226" id="hs-cta-1ebfd08d-701c-4ed4-a806-6c472ad9e226"><!--[if lte IE 8]><div id="hs-cta-ie-element"></div><![endif]--><a href="https://cta-redirect.hubspot.com/cta/redirect/149513/1ebfd08d-701c-4ed4-a806-6c472ad9e226"><img class="hs-cta-img" id="hs-cta-img-1ebfd08d-701c-4ed4-a806-6c472ad9e226" style="border-width:0px;" src="https://no-cache.hubspot.com/cta/default/149513/1ebfd08d-701c-4ed4-a806-6c472ad9e226.png" alt="Contact us"></a></span><script charset="utf-8" src="/hs/cta/cta/current.js"></script><script type="text/javascript"> hbspt.cta._relativeUrls=true;hbspt.cta.load(149513, '1ebfd08d-701c-4ed4-a806-6c472ad9e226', {"useNewLoader":"true","region":"na1"}); </script></span><!-- end HubSpot Call-to-Action Code --></span>
+            </div>
+        </div>
+    </div>
+</section></div></span>
+</div><!--end widget-span -->
+</div><!--end row-->
+</div><!--end row-wrapper -->
+
+    </div><!--end body -->
+</div><!--end body wrapper -->
+
+<div class="footer-container-wrapper">
+    <div class="footer-container container-fluid">
+
+<div class="row-fluid-wrapper row-depth-1 row-number-1 ">
+<div class="row-fluid ">
+<div class="span12 widget-span widget-type-cell " style="" data-widget-type="cell" data-x="0" data-w="12">
+
+<div class="row-fluid-wrapper row-depth-1 row-number-2 ">
+<div class="row-fluid ">
+<div class="span12 widget-span widget-type-custom_widget " style="" data-widget-type="custom_widget" data-x="0" data-w="12">
+<div id="hs_cos_wrapper_module_1502712460250133" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module"><div class="l-footer--green">
+<div data-global-resource-path="qtv3/partials/footer/footer.html">
+
+<div class="l-footer">
+    <div class="l-footer__container">
+        <div class="l-footer__row l-footer__row--no-padding-bottom">
+            <div class="l-footer__column l-footer__company">
+                <div class="l-footer__logo">
+                    <a href="/?hsLang=en" class="c-logo-footer">
+                        <svg width="122" viewbox="0 0 633 160" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M85.0242 38.5439C76.0002 38.5439 69.8082 41.5199 66.4482 47.4719C63.0882 53.4239 61.4082 62.9279 61.4082 75.9839C61.4082 89.0399 63.0402 98.3679 66.3042 103.984C69.5682 109.6 75.8082 112.4 85.0242 112.4C94.2402 112.4 100.448 109.648 103.68 104.128C106.896 98.6079 108.496 89.2799 108.496 76.1279C108.496 62.9759 106.832 53.4239 103.536 47.4719C100.224 41.5199 94.0482 38.5439 85.0242 38.5439V38.5439Z" /><path d="M25.6 0L0 25.6V160H198.4L224 134.4V0H25.6ZM121.456 139.632L106.624 146.544L93.808 125.52C91.984 126.096 89.056 126.384 85.024 126.384C70.048 126.384 59.616 122.352 53.696 114.288C47.792 106.224 44.848 93.472 44.848 76.048C44.848 58.624 47.84 45.696 53.84 37.232C59.84 28.784 70.224 24.56 85.008 24.56C99.792 24.56 110.16 28.768 116.112 37.168C122.064 45.568 125.04 58.512 125.04 75.984C125.04 87.504 123.808 96.816 121.376 103.92C118.928 111.024 114.912 116.448 109.344 120.192L121.44 139.632H121.456ZM163.424 126.384C155.264 126.384 149.664 124.512 146.64 120.768C143.616 117.024 142.112 109.968 142.112 99.6V66.192H132.896V52.8H142.112V31.92H157.664V52.8H177.536V66.192H157.664V97.872C157.664 103.728 158.096 107.616 158.96 109.536C159.824 111.456 162.032 112.416 165.584 112.416L177.392 111.984L178.112 124.512C171.68 125.76 166.784 126.384 163.424 126.384V126.384Z" /><path d="M318.552 87.272V73.16H346.632V123.272C344.04 123.944 338.76 124.664 330.792 125.432C322.92 126.2 317.208 126.584 313.656 126.584C298.68 126.584 288.36 122.456 282.696 114.2C277.032 105.944 274.2 93.032 274.2 75.464C274.2 57.8 277.08 44.936 282.84 36.872C288.696 28.808 298.776 24.776 313.08 24.776C321.528 24.776 331.032 25.736 341.592 27.656L346.632 28.664L346.056 41.336C334.44 39.8 324.024 39.032 314.808 39.032C305.592 39.032 299.256 41.624 295.8 46.808C292.44 51.992 290.76 61.592 290.76 75.608C290.76 89.624 292.344 99.32 295.512 104.696C298.776 109.976 305.304 112.616 315.096 112.616C322.104 112.616 327.336 112.184 330.792 111.32V87.272H318.552Z" /><path d="M364.816 125V53H380.368V61.64C388.528 56.36 396.688 52.952 404.848 51.416V67.112C396.592 68.744 389.536 70.856 383.68 73.448L380.512 74.744V125H364.816Z" /><path d="M420.173 60.776C425.165 54.536 433.421 51.416 444.941 51.416C456.461 51.416 464.669 54.536 469.565 60.776C474.557 67.016 477.053 76.376 477.053 88.856C477.053 101.336 474.653 110.744 469.853 117.08C465.053 123.416 456.749 126.584 444.941 126.584C433.133 126.584 424.829 123.416 420.029 117.08C415.229 110.744 412.829 101.336 412.829 88.856C412.829 76.376 415.277 67.016 420.173 60.776ZM431.981 107.576C434.189 111.416 438.509 113.336 444.941 113.336C451.373 113.336 455.693 111.416 457.901 107.576C460.109 103.736 461.213 97.448 461.213 88.712C461.213 79.976 460.013 73.784 457.613 70.136C455.309 66.488 451.085 64.664 444.941 64.664C438.797 64.664 434.525 66.488 432.125 70.136C429.821 73.784 428.669 79.976 428.669 88.712C428.669 97.448 429.773 103.736 431.981 107.576Z" /><path d="M536.277 53H551.829V125H536.277V120.536C529.269 124.568 522.789 126.584 516.837 126.584C506.949 126.584 500.325 123.944 496.965 118.664C493.605 113.288 491.925 103.928 491.925 90.584V53H507.621V90.728C507.621 99.368 508.341 105.176 509.781 108.152C511.221 111.128 514.581 112.616 519.861 112.616C525.045 112.616 529.797 111.656 534.117 109.736L536.277 108.872V53Z" /><path d="M570.832 155.96V53H586.384V57.464C593.008 53.432 599.2 51.416 604.96 51.416C614.464 51.416 621.424 54.344 625.84 60.2C630.256 65.96 632.464 75.704 632.464 89.432C632.464 103.064 629.92 112.664 624.832 118.232C619.84 123.8 611.632 126.584 600.208 126.584C596.272 126.584 591.712 126.152 586.528 125.288V155.96H570.832ZM602.224 65.384C597.712 65.384 593.2 66.392 588.688 68.408L586.528 69.416V111.896C590.368 112.664 594.592 113.048 599.2 113.048C605.728 113.048 610.24 111.176 612.736 107.432C615.232 103.688 616.48 97.304 616.48 88.28C616.48 73.016 611.728 65.384 602.224 65.384Z" />
+                    </svg></a>
+                </div>
+
+                <div class="c-social-media-links">
+                    <a href="https://twitter.com/qtproject" target="_blank" rel="noopener" class="fm_button fm_twitter"><span></span></a>
+                    <a href="https://www.facebook.com/qt/" target="_blank" rel="noopener" class="fm_button fm_facebook"><span></span></a>
+                    <a href="https://www.youtube.com/user/QtStudios" target="_blank" rel="noopener" class="fm_button fm_youtube"><span></span></a>
+                    <a href="https://www.linkedin.com/company/theqtcompany/" target="_blank" rel="noopener" class="fm_button fm_linkedin"><span></span></a>
+                    
+                </div>
+
+            </div>
+            <div class="l-footer__column l-footer__navigation">
+                <div class="c-footer-navigation">
+                    <span id="hs_cos_wrapper_module_1502712460250133_footer_menu" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_menu" style="" data-hs-cos-general-type="widget" data-hs-cos-type="menu"><div id="hs_menu_wrapper_module_1502712460250133_footer_menu" class="hs-menu-wrapper active-branch flyouts hs-menu-flow-horizontal" role="navigation" data-sitemap-name="QtV3 Footer" data-menu-id="83673483157" aria-label="Navigation Menu">
+ <ul role="menu">
+  <li class="hs-menu-item hs-menu-depth-1 hs-item-has-children" role="none"><a href="javascript:;" aria-haspopup="true" aria-expanded="false" role="menuitem">Qt Group</a>
+   <ul role="menu" class="hs-menu-children-wrapper">
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.qt.io/group" role="menuitem">Our Story</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.qt.io/newsroom" role="menuitem">News</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.qt.io/careers" role="menuitem">Careers</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://investors.qt.io" role="menuitem">Investors</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.qt.io/product" role="menuitem">Qt Products</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.qt.io/product/quality-assurance" role="menuitem">Quality Assurance Products</a></li>
+   </ul></li>
+  <li class="hs-menu-item hs-menu-depth-1 hs-item-has-children" role="none"><a href="javascript:;" aria-haspopup="true" aria-expanded="false" role="menuitem">Licensing</a>
+   <ul role="menu" class="hs-menu-children-wrapper">
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.qt.io/terms-conditions/" role="menuitem">License Agreement</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.qt.io/licensing/open-source-lgpl-obligations" role="menuitem">Open Source</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.qt.io/pricing" role="menuitem">Plans and pricing</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.qt.io/download" role="menuitem">Download</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.qt.io/faq/overview" role="menuitem">FAQ</a></li>
+   </ul></li>
+  <li class="hs-menu-item hs-menu-depth-1 hs-item-has-children" role="none"><a href="javascript:;" aria-haspopup="true" aria-expanded="false" role="menuitem">Learn Qt</a>
+   <ul role="menu" class="hs-menu-children-wrapper">
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.qt.io/learn" role="menuitem">For learners</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.qt.io/qt-educational-license" role="menuitem">For students and teachers</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.qt.io/courses" role="menuitem">Learning resources</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://doc.qt.io/" role="menuitem" target="_blank" rel="noopener">Qt Documentation</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://forum.qt.io/" role="menuitem" target="_blank" rel="noopener">Qt Forum</a></li>
+   </ul></li>
+  <li class="hs-menu-item hs-menu-depth-1 hs-item-has-children" role="none"><a href="javascript:;" aria-haspopup="true" aria-expanded="false" role="menuitem">Support&amp;Services</a>
+   <ul role="menu" class="hs-menu-children-wrapper">
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.qt.io/qt-professional-services" role="menuitem">Professional Services</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.qt.io/customer-success" role="menuitem">Customer Success</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.qt.io/qt-support/" role="menuitem">Support Services</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.qt.io/contact-us/partners" role="menuitem">Partners</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.qt.io/qt-world" role="menuitem" target="_blank" rel="noopener">Qt World</a></li>
+   </ul></li>
+ </ul>
+</div></span>
+                </div>
+
+
+                <div class="c-footer-subscribe">
+                    <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
+                    <script>
+                      hbspt.forms.create({
+                        region: "na1",
+                        portalId: "149513",
+                        formId: "e93f1383-a08a-4017-ba8f-7bad0d8b18c2",
+                        css: ""
+                      });
+                    </script>
+                </div>
+            </div>
+        </div>
+
+        <div class="l-footer__row">
+            <div class="l-footer__column l-footer__legal">
+                <div class="c-footer-secondary-navigation">
+                    <span id="hs_cos_wrapper_module_1502712460250133_footer_secondary_menu" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_menu" style="" data-hs-cos-general-type="widget" data-hs-cos-type="menu"><div id="hs_menu_wrapper_module_1502712460250133_footer_secondary_menu" class="hs-menu-wrapper active-branch flyouts hs-menu-flow-horizontal" role="navigation" data-sitemap-name="QtV3 Footer Secondary" data-menu-id="86192689944" aria-label="Navigation Menu">
+ <ul role="menu">
+  <li class="hs-menu-item hs-menu-depth-1" role="none"><a href="https://www.qt.io/terms-conditions/legal-notice" role="menuitem" target="_blank" rel="noopener">Legal Notice</a></li>
+  <li class="hs-menu-item hs-menu-depth-1" role="none"><a href="https://www.qt.io/terms-conditions/privacy-policy" role="menuitem" target="_blank" rel="noopener">Privacy Policy</a></li>
+  <li class="hs-menu-item hs-menu-depth-1" role="none"><a href="https://www.qt.io/terms-conditions/qt-account" role="menuitem" target="_blank" rel="noopener">Terms &amp; Conditions</a></li>
+  <li class="hs-menu-item hs-menu-depth-1" role="none"><a href="https://www.qt.io/terms-conditions/cookie-policy" role="menuitem" target="_blank" rel="noopener">Cookie Policy</a></li>
+  <li class="hs-menu-item hs-menu-depth-1" role="none"><a href="https://www.qt.io/contact-us" role="menuitem" target="_blank" rel="noopener">Contact Us</a></li>
+  <li class="hs-menu-item hs-menu-depth-1" role="none"><a href="javascript:;" role="menuitem">© 2023 The Qt Company</a></li>
+ </ul>
+</div></span>
+                </div>
+            </div>
+            <div class="l-footer__column l-footer__some-links">
+            </div>
+        </div>
+    </div>
+</div></div>
+</div>
+<!-- start Main.js DO NOT REMOVE
+<script src='//cdn2.hubspot.net/hub/149513/hub_generated/template_assets/5274928653/1578904689225/Coded_files/Custom/page/Qt2017/flickity.min.min.js'></script> 
+<script src='//cdn2.hubspot.net/hub/149513/hub_generated/template_assets/5267442779/1632909516390/Coded_files/Custom/page/Qt2017/script_qt2017.min.js'></script>
+--> 
+
+
+
+<!-- end Main.js --></div>
+
+</div><!--end widget-span -->
+</div><!--end row-->
+</div><!--end row-wrapper -->
+
+</div><!--end widget-span -->
+</div><!--end row-->
+</div><!--end row-wrapper -->
+
+    </div><!--end footer -->
+</div><!--end footer wrapper -->
+
+    
+<script>
+(function () {
+    window.addEventListener('load', function () {
+        setTimeout(function () {
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/_hcms/perf', true /*async*/);
+            xhr.setRequestHeader("Content-type", "application/json");
+            xhr.onreadystatechange = function () {
+                // do nothing.
+            };
+            var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+            function populateNetworkInfo(name, connection, info) {
+                if (name in connection) {
+                    info[name] = connection[name];
+                }
+            }
+            var networkInfo = {};
+            if (connection) {
+                ['type', 'effectiveType', 'downlink', 'rtt'].forEach(function(name) {
+                    populateNetworkInfo(name, connection, networkInfo);
+                });
+            }
+            var perfData = {
+                url: location.href,
+                portal: 149513,
+                content: 12047561822,
+                group: -1,
+                connection: networkInfo,
+                timing: performance.timing
+            };
+            xhr.send(JSON.stringify(perfData));
+        }, 3000);  // Execute this 3 seconds after onload.
+    });
+})();
+</script>
+
+<script>
+var hsVars = hsVars || {}; hsVars['language'] = 'en';
+</script>
+
+<script src="/hs/hsstatic/cos-i18n/static-1.53/bundles/project.js"></script>
+<script src="https://www.qt.io/hs-fs/hub/149513/hub_generated/template_assets/85031126346/1670876300321/qtv3/partials/header/header.min.js"></script>
+<script src="/hs/hsstatic/keyboard-accessible-menu-flyouts/static-1.17/bundles/project.js"></script>
+<script src="https://www.qt.io/hs-fs/hub/149513/hub_generated/template_assets/36303428836/1666160948260/qtv2/assets/js/qt-main.min.js"></script>
+
+<!-- Start of HubSpot Analytics Code -->
+<script type="text/javascript">
+var _hsq = _hsq || [];
+_hsq.push(["setContentType", "landing-page"]);
+_hsq.push(["setCanonicalUrl", "https:\/\/www.qt.io\/web-assembly-example-pizza-shop"]);
+_hsq.push(["setPageId", "12047561822"]);
+_hsq.push(["setContentMetadata", {
+    "contentPageId": 12047561822,
+    "legacyPageId": "12047561822",
+    "contentFolderId": null,
+    "contentGroupId": null,
+    "abTestId": null,
+    "languageVariantId": 12047561822,
+    "languageCode": "en",
+    
+}]);
+</script>
+
+<script type="text/javascript" id="hs-script-loader" async defer src="/hs/scriptloader/149513.js"></script>
+<!-- End of HubSpot Analytics Code -->
+
+
+<script type="text/javascript">
+var hsVars = {
+    ticks: 1675495287815,
+    page_id: 12047561822,
+    
+    content_group_id: 0,
+    portal_id: 149513,
+    app_hs_base_url: "https://app.hubspot.com",
+    cp_hs_base_url: "https://cp.hubspot.com",
+    language: "en",
+    analytics_page_type: "landing-page",
+    analytics_page_id: "12047561822",
+    category_id: 1,
+    folder_id: 0,
+    is_hubspot_user: false
+}
+</script>
+
+
+<script defer src="/hs/hsstatic/HubspotToolsMenu/static-1.143/js/index.js"></script>
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-T2GWQM" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager -->
+
+<!-- LinkedIn Insight Tag -->
+<script type="text/javascript">
+_linkedin_partner_id = "2872826";
+window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+</script><script type="text/javascript">
+(function(l) {
+if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};
+window.lintrk.q=[]}
+var s = document.getElementsByTagName("script")[0];
+var b = document.createElement("script");
+b.type = "text/javascript";b.async = true;
+b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+s.parentNode.insertBefore(b, s);})(window.lintrk);
+</script>
+<noscript>
+<img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=2872826&amp;fmt=gif">
+</noscript>
+<!-- End LinkedIn Insight Tag -->
+
+<!-- start Main.js DO NOT REMOVE --> 
+
+<!--<script src='//cdn2.hubspot.net/hub/149513/hub_generated/template_assets/1112970242/1578904689139/Coded_files/Custom/page/DigiaQtCommercial-Jun2014-theme/DigiaQtCommercial-Jun2014-main.min.js'></script> -->
+
+<!-- end Main.js -->
+
+
+<script src="//m.servedby-buysellads.com/monetization.it.js"></script>
+<script>(function() {if (typeof _bsa !== 'undefined' && _bsa) {_bsa.trackConv();}})();</script>
+<script>
+  $(init_wasm);
+</script>
+
+    
+    <!-- Generated by the HubSpot Template Builder - template version 1.03 -->
+
+</body></html>

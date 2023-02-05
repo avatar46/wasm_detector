@@ -1,0 +1,6 @@
+https://static.magnum.graphics/showcase/picking
+https://www.qt.io/hubfs/_website/qt-webassembly
+https://www.funkykarts.rocks
+https://playgameoflife.com
+https://wasm4.org/play/break-it
+https://colineberhardt.github.io/wasm-sudoku-solver/lib
