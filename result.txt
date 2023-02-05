@@ -4,3 +4,4 @@ https://www.funkykarts.rocks
 https://playgameoflife.com
 https://wasm4.org/play/break-it
 https://colineberhardt.github.io/wasm-sudoku-solver/lib
+https://sandspiel.club
